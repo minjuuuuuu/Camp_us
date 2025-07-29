@@ -62,7 +62,6 @@
             background-color: #1aa6a1;
         }
 
-        /* 첨부파일 커스텀 스타일 */
         .file-upload {
             display: flex;
             align-items: center;
@@ -101,7 +100,7 @@
     <!-- 말머리 -->
     <div class="form-group">
         <label>말머리</label>
-        <select name="category">
+        <select name="boardCat">
             <option value="">전체</option>
             <option value="공지">공지</option>
             <option value="자유">자유</option>
@@ -113,13 +112,13 @@
     <!-- 제목 -->
     <div class="form-group">
         <label>제목</label>
-        <input type="text" name="title" placeholder="제목을 입력해주세요." required />
+        <input type="text" name="boardName" placeholder="제목을 입력해주세요." required />
     </div>
 
     <!-- 내용 (Summernote) -->
     <div class="form-group">
         <label>내용</label>
-        <textarea id="summernote" name="content"></textarea>
+        <textarea id="summernote" name="boardContent"></textarea>
     </div>
 
     <!-- 첨부파일 1 -->

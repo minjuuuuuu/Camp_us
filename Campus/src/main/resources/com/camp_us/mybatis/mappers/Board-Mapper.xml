@@ -8,13 +8,61 @@
     <!-- 게시글 목록 조회 -->
     <select id="selectBoardList" resultType="com.camp_us.dto.BoardVO">
         SELECT 
-            BNO, 
-            CATEGORY, 
-            TITLE, 
-            WRITER, 
-            REGDATE
+            BOARD_ID AS boardNo,
+            BOARD_CAT AS boardCat,
+            BOARD_NAME AS boardName,
+            MEM_ID AS memId,
+            BOARD_DATE AS boardDate
         FROM BOARD
-        ORDER BY REGDATE DESC
+        ORDER BY BOARD_ID DESC
     </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="selectBoardByNo" parameterType="int" resultType="com.camp_us.dto.BoardVO">
+        SELECT 
+            BOARD_ID AS boardNo,
+            BOARD_CAT AS boardCat,
+            BOARD_NAME AS boardName,
+            MEM_ID AS memId,
+            BOARD_DATE AS boardDate,
+            BOARD_DESC AS content
+        FROM BOARD
+        WHERE BOARD_ID = #{boardNo}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insertBoard" parameterType="com.camp_us.dto.BoardVO">
+        INSERT INTO BOARD (
+            BOARD_ID, 
+            BOARD_CAT, 
+            BOARD_NAME, 
+            MEM_ID, 
+            BOARD_DATE, 
+            BOARD_DESC
+        ) VALUES (
+            #{boardNo}, 
+            #{boardCat}, 
+            #{boardName}, 
+            #{memId}, 
+            SYSDATE, 
+            #{content}
+        )
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="updateBoard" parameterType="com.camp_us.dto.BoardVO">
+        UPDATE BOARD
+        SET 
+            BOARD_CAT = #{boardCat},
+            BOARD_NAME = #{boardName},
+            BOARD_DESC = #{content}
+        WHERE BOARD_ID = #{boardNo}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM BOARD
+        WHERE BOARD_ID = #{boardNo}
+    </delete>
 
 </mapper>

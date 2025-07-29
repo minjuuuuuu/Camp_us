@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:c="http://www.springframework.org/schema/c"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="memberDAO"
-	      class="com.camp_us.dao.MemberDAOImpl"
-	      c:session-ref="sqlSession"
-	      />
-	<bean id="memberService"
-	      class="com.camp_us.service.MemberServiceImpl"
-	      c:memberDAO-ref="memberDAO"
-	      />
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Member 관련 Bean -->
+    <bean id="memberDAO"
+          class="com.camp_us.dao.MemberDAOImpl"
+          c:session-ref="sqlSession" />
+
+    <bean id="memberService"
+          class="com.camp_us.service.MemberServiceImpl"
+          c:memberDAO-ref="memberDAO" />
+
+    <!-- Board 관련 Bean -->
+    <bean id="boardDAO"
+          class="com.camp_us.dao.BoardDAOImpl"
+          c:session-ref="sqlSession" />
+
+    <bean id="boardService"
+          class="com.camp_us.service.BoardServiceImpl"
+          c:boardDAO-ref="boardDAO" />
+
+    <!-- 컴포넌트 스캔 (Controller, @Component 등 자동 등록) -->
+    <context:component-scan base-package="com.camp_us" />
+
 </beans>
-
-

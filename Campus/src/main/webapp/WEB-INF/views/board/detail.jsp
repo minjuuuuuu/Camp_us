@@ -251,9 +251,9 @@ h1 {
 		<button class="btn btn-delete">삭제</button>
 	</div>
 
-	<div class="title">${board.title}</div>
-	<div class="meta">작성자: ${board.writer} &nbsp; | &nbsp;
-		${board.regDate}</div>
+	<div class="title">${board.boardName}</div>
+<div class="meta">작성자: ${board.memId} &nbsp; | &nbsp; ${board.boardDate}</div>
+
 
 	<div class="content">
 		<p>

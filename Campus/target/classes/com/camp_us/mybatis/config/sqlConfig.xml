@@ -9,6 +9,7 @@
 		<typeAlias type="java.lang.Integer" alias="int"/>
 		
 		<typeAlias type="com.camp_us.dto.MemberVO" alias="account"/>
+		<typeAlias type="com.camp_us.dto.BoardVO" alias="board"/>
 	</typeAliases>
 </configuration>
 

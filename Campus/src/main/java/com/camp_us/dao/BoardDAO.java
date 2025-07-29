@@ -1,27 +1,22 @@
 package com.camp_us.dao;
 
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import com.camp_us.dto.BoardVO;
 
-@Repository
-public class BoardDAO {
+public interface BoardDAO {
 
-    @Autowired
-    private SqlSession sqlSession;
+    // 게시글 목록 조회
+    List<BoardVO> selectBoardList();
 
-    private static final String NAMESPACE = "com.camp_us.mapper.BoardMapper";
+    // 게시글 상세 조회
+    BoardVO selectBoardByNo(String boardNo);
 
-    public List<BoardVO> selectBoardList() {
-        return sqlSession.selectList(NAMESPACE + ".selectBoardList");
-    }
+    // 게시글 등록
+    int insertBoard(BoardVO board);
 
-    public BoardVO selectBoardById(int bno) {
-        return sqlSession.selectOne(NAMESPACE + ".selectBoardById", bno);
-    }
+    // 게시글 수정
+    int updateBoard(BoardVO board);
 
-    
-
+    // 게시글 삭제
+    int deleteBoard(String boardNo);
 }
