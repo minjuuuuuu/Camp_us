@@ -1,26 +1,31 @@
 package com.camp_us.service;
 
+import java.sql.SQLException;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
+import com.camp_us.command.PageMaker;
 import com.camp_us.dao.BoardDAO;
 import com.camp_us.dto.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
-	private final BoardDAO boardDAO;
+	private BoardDAO boardDAO;
+	private String summernotePath;
+	
+	public BoardServiceImpl(BoardDAO boardDAO,String summernotePath) {
+		this.summernotePath = summernotePath;
+		this.boardDAO = boardDAO;
+	}
 
-    @Autowired
-    public BoardServiceImpl(BoardDAO boardDAO) {
-        this.boardDAO = boardDAO;
-    }
-
-    @Override
-    public List<BoardVO> selectBoardList() {
-        return boardDAO.selectBoardList();
-    }
-
+	@Override
+	public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
+		List<BoardVO> boardList = boardDAO.selectBoardList(pageMaker);
+		
+		return boardList;
+	}
     @Override
     public BoardVO selectBoardByNo(String boardNo) {
         return boardDAO.selectBoardByNo(boardNo);

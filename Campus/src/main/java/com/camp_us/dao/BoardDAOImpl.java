@@ -1,45 +1,60 @@
 package com.camp_us.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.camp_us.command.PageMaker;
 import com.camp_us.dto.BoardVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
-    private static final String NAMESPACE = "com.camp_us.mapper.BoardMapper";
+private SqlSession session;
+	
+	public BoardDAOImpl(SqlSession session) {
+		this.session = session;
+	}
 
-    private final SqlSession sqlSession;
+	@Override
+	public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
+		int offset = pageMaker.getStartRow()-1;
+		int limit = pageMaker.getPerPageNum();
+		RowBounds bounds = new RowBounds(offset,limit);
+		
+		List<BoardVO> boardList = session.selectList("Board-Mapper.selectBoardList",pageMaker,bounds);
+		
+		return boardList;
+	}
 
-    public BoardDAOImpl(SqlSession sqlSession) {
-        this.sqlSession = sqlSession;
-    }
 
-    @Override
-    public List<BoardVO> selectBoardList() {
-        return sqlSession.selectList(NAMESPACE + ".selectBoardList");
-    }
+	@Override
+	public BoardVO selectBoardByNo(String boardNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public BoardVO selectBoardByNo(String boardNo) {
-        return sqlSession.selectOne(NAMESPACE + ".selectBoardByNo", boardNo);
-    }
+	@Override
+	public int insertBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public int insertBoard(BoardVO board) {
-        return sqlSession.insert(NAMESPACE + ".insertBoard", board);
-    }
+	@Override
+	public int updateBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public int updateBoard(BoardVO board) {
-        return sqlSession.update(NAMESPACE + ".updateBoard", board);
-    }
+	@Override
+	public int deleteBoard(String boardNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public int deleteBoard(String boardNo) {
-        return sqlSession.delete(NAMESPACE + ".deleteBoard", boardNo);
-    }
+
+    
 }

@@ -19,33 +19,33 @@ where phone like '%'||#{keyword}||'%'
 </if>
 </sql>
 
-<select id="selectMemberList" resultType="account">
+<select id="selectMemberList" resultType="member">
 select *
-from account
+from member
 order by mem_lastlogin_date desc
 </select>
 
-<select id="selectMemberByID" parameterType="str" resultType="account">
+<select id="selectMemberByID" parameterType="str" resultType="member">
 select *
-from account
+from member
 where mem_id=#{mem_id}
 </select>
 
-<insert id="insertMember" parameterType="account">
+<insert id="insertMember" parameterType="member">
 insert into
-account(mem_id, mem_pass, mem_email, mem_phone, mem_name, mem_add)
+member(mem_id, mem_pass, mem_email, mem_phone, mem_name, mem_add)
 values(#{mem_id}, #{mem_pass}, #{mem_email},#{mem_phone},#{mem_name},#{mem_add})
 </insert>
 
-<update id="updateMember" parameterType="account">
-update account 
+<update id="updateMember" parameterType="member">
+update member 
 set mem_pass=#{mem_pass},mem_email=#{mem_email},mem_phone=#{mem_phone},mem_name=#{mem_name}
 where mem_id=#{mem_id}
 </update>
 
 <delete id="deleteMember" parameterType="str">
 delete
-from account
+from member
 where mem_id=#{mem_id}
 </delete>
 

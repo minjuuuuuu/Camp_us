@@ -1,12 +1,15 @@
 package com.camp_us.dao;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import com.camp_us.command.PageMaker;
 import com.camp_us.dto.BoardVO;
 
 public interface BoardDAO {
 
     // 게시글 목록 조회
-    List<BoardVO> selectBoardList();
+    List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException;
 
     // 게시글 상세 조회
     BoardVO selectBoardByNo(String boardNo);
