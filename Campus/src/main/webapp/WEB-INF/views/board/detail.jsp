@@ -24,7 +24,7 @@ h1 {
 
 .meta {
 	color: gray;
-	margin-bottom: 20px;
+	margin-bottom: 20px;@
 }
 
 .content {
