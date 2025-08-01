@@ -23,7 +23,7 @@ h1 {
 }
 
 .meta {
-	color: gray;
+	color: gray;@
 	margin-bottom: 20px;@
 }
 
