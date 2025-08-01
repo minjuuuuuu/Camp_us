@@ -13,48 +13,42 @@ import com.camp_us.dto.BoardVO;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
-private SqlSession session;
-	
-	public BoardDAOImpl(SqlSession session) {
-		this.session = session;
-	}
+    private SqlSession session;
 
-	@Override
-	public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
-		int offset = pageMaker.getStartRow()-1;
-		int limit = pageMaker.getPerPageNum();
-		RowBounds bounds = new RowBounds(offset,limit);
-		
-		List<BoardVO> boardList = session.selectList("Board-Mapper.selectBoardList",pageMaker,bounds);
-		
-		return boardList;
-	}
+    public BoardDAOImpl(SqlSession session) {
+        this.session = session;
+    }
 
+    @Override
+    public int getTotalCount(PageMaker pageMaker) {
+        return session.selectOne("Board-Mapper.getTotalCount", pageMaker);
+    }
 
-	@Override
-	public BoardVO selectBoardByNo(String boardNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
+        int offset = pageMaker.getStartRow() - 1;
+        int limit = pageMaker.getPerPageNum();
+        RowBounds bounds = new RowBounds(offset, limit);
+        return session.selectList("Board-Mapper.selectBoardList", pageMaker, bounds);
+    }
 
-	@Override
-	public int insertBoard(BoardVO board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public BoardVO selectBoardByNo(String boardNo) {
+        return session.selectOne("Board-Mapper.selectBoardByNo", boardNo);
+    }
 
-	@Override
-	public int updateBoard(BoardVO board) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int insertBoard(BoardVO board) {
+        return session.insert("Board-Mapper.insertBoard", board);
+    }
 
-	@Override
-	public int deleteBoard(String boardNo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int updateBoard(BoardVO board) {
+        return session.update("Board-Mapper.updateBoard", board);
+    }
 
-
-    
+    @Override
+    public int deleteBoard(String boardNo) {
+        return session.delete("Board-Mapper.deleteBoard", boardNo);
+    }
 }

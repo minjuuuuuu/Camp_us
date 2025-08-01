@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <title>게시판 - 상세보기</title>
 <style>
-body {
+
 	font-family: '맑은 고딕', sans-serif;
 	padding: 30px;
 }
@@ -30,6 +31,7 @@ h1 {
 	border-top: 1px solid #ddd;
 	padding: 20px 0;
 	margin-bottom: 20px;
+	white-space: pre-wrap;
 }
 
 .attachment {
@@ -129,7 +131,6 @@ h1 {
 .report a:hover {
 	color: #20c997;
 }
-
 /* 신고 팝업 */
 .report-popup {
 	display: none;
@@ -188,8 +189,33 @@ h1 {
 	color: white;
 }
 </style>
+
 <script>
-	// 신고 팝업 열고 닫기
+	let editMode = false;
+
+	function toggleEditMode() {
+		if (!editMode) {
+			const titleText = document.getElementById("postTitle").innerText;
+			const contentText = document.getElementById("postContent").innerText;
+
+			document.getElementById("postTitle").innerHTML = `<input type="text" id="editTitle" value="${titleText}" style="width:100%; font-size:20px; font-weight:bold;">`;
+
+			document.getElementById("postContent").innerHTML = `<textarea id="editContent" style="width:100%; height:200px;">${contentText}</textarea>`;
+
+			document.getElementById("editButton").innerText = "저장";
+			editMode = true;
+		} else {
+			const newTitle = document.getElementById("editTitle").value;
+			const newContent = document.getElementById("editContent").value;
+
+			document.getElementById("postTitle").innerText = newTitle;
+			document.getElementById("postContent").innerText = newContent;
+
+			document.getElementById("editButton").innerText = "수정";
+			editMode = false;
+		}
+	}
+
 	function openReportPopup() {
 		document.getElementById("reportPopup").style.display = "block";
 	}
@@ -212,64 +238,44 @@ h1 {
 		alert("신고가 정상적으로 접수되었습니다.");
 		closeReportPopup();
 	}
-
-	// 댓글 수정 기능
-	function enableEdit(btn) {
-		const comment = btn.closest('.comment');
-		const textDiv = comment.querySelector('.comment-text');
-		const originalText = textDiv.innerText.trim();
-
-		const textarea = document.createElement('textarea');
-		textarea.value = originalText;
-		textarea.style.width = '100%';
-		textarea.style.height = '80px';
-		textarea.classList.add('edit-area');
-
-		const saveBtn = document.createElement('button');
-		saveBtn.innerText = '저장';
-		saveBtn.style.marginTop = '10px';
-		saveBtn.onclick = function() {
-			textDiv.innerText = textarea.value;
-			textDiv.style.display = 'block';
-			textarea.remove();
-			saveBtn.remove();
-		};
-
-		textDiv.style.display = 'none';
-		comment.insertBefore(textarea, textDiv.nextSibling);
-		comment.insertBefore(saveBtn, textarea.nextSibling);
-	}
 </script>
 </head>
 <body>
 
 	<h1>게시판</h1>
 
-	<!-- 글 수정/삭제 -->
+	<!-- 수정 / 삭제 버튼 -->
 	<div class="btn-box">
-		<button class="btn btn-edit">수정</button>
+		<button id="editButton" class="btn btn-edit"
+			onclick="toggleEditMode()">수정</button>
 		<button class="btn btn-delete">삭제</button>
 	</div>
 
-	<div class="title">${board.boardName}</div>
-<div class="meta">작성자: ${board.memId} &nbsp; | &nbsp; ${board.boardDate}</div>
-
-
-	<div class="content">
-		<p>
-			안녕하세요. 정다운 교수입니다.<br>
-			<br> 2차 현장학습(7월 18일 금요일)을 앞두고, 사전에 준비해야 할 물품을 아래와 같이 안내드립니다.<br>
-			모든 학생은 반드시 확인 후 준비해주시기 바랍니다.
-		</p>
+	<!-- 제목 / 작성자 / 날짜 -->
+	<div id="postTitle" class="title">${board.boardName}</div>
+	<div class="meta">
+		작성자: ${board.memId} &nbsp; | &nbsp;
+		<fmt:formatDate value="${board.boardDate}" pattern="yyyy-MM-dd HH:mm" />
 	</div>
 
-	<div class="attachment">📎 [2차 현장학습] 준비물 지침서.pdf</div>
+	<!-- 본문 -->
+	<div id="postContent" class="content">${board.boardDesc}</div>
 
+	<!-- 첨부파일 -->
+	<c:if test="${not empty board.pfileName}">
+		<div class="attachment">
+			📎 <a
+				href="${pageContext.request.contextPath}/upload/${board.pfileName}"
+				download>${board.pfileName}</a>
+		</div>
+	</c:if>
+
+	<!-- 신고 -->
 	<div class="report">
-	 <a onclick="openReportPopup()">[신고]</a>
+		<a onclick="openReportPopup()">[신고]</a>
 	</div>
 
-	<!-- 댓글 영역 -->
+	<!-- 댓글 -->
 	<div class="comment-section">
 		<div class="comment">
 			<div class="comment-meta">
@@ -290,10 +296,11 @@ h1 {
 		</div>
 	</div>
 
-<div class="footer-btns">
-    <button class="btn btn-back" onclick="location.href='${pageContext.request.contextPath}/boardlist'">목록</button>
-</div>
+	<!-- 목록으로 -->
+	<div class="footer-btns">
+		<button class="btn btn-back" onclick="location.href='${pageContext.request.contextPath}/list'">목록</button>
 
+	</div>
 
 	<!-- 신고 팝업 -->
 	<div id="reportPopup" class="report-popup">

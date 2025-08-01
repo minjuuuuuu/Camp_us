@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <div class="wrapper">
 	<div class="content-wrapper">
 		<div class="content-header">
@@ -94,8 +93,7 @@ th, td {
 			}
 		</script>
 
-		<form id="filterForm" method="get"
-			action="${pageContext.request.contextPath}/boardlist">
+		<form id="filterForm" method="get" action="${pageContext.request.contextPath}/campus/boardlist">
 
 			<div class="top-bar">
 				<div class="top-left">
@@ -139,9 +137,13 @@ th, td {
 						<td colspan="5">게시글이 없습니다.</td>
 					</tr>
 				</c:if>
+
+				<%-- ✅ 게시글 번호 계산 --%>
 				<c:forEach var="board" items="${boardList}" varStatus="status">
 					<tr>
 						<td>${board.boardId}</td>
+						<!-- 이 줄로 변경 -->
+
 						<td>${board.boardCat}</td>
 						<td><a
 							href="${pageContext.request.contextPath}/board/detail?bno=${board.boardId}">
@@ -154,7 +156,6 @@ th, td {
 					</tr>
 				</c:forEach>
 			</tbody>
-
 		</table>
 
 		<div class="pagination">
@@ -168,7 +169,6 @@ th, td {
 				href="?page=${totalPage}">&raquo;</a>
 		</div>
 
-		<!-- 작성 버튼 영역 -->
 		<div class="write-btn">
 			<button type="button" class="btn btn-primary"
 				onclick="openWritePopup()"
@@ -176,6 +176,13 @@ th, td {
 				작성하기</button>
 		</div>
 
+		<script>
+			function openWritePopup() {
+				window.open("${pageContext.request.contextPath}/board/write",
+						"popupWrite",
+						"width=800,height=600,scrollbars=yes,resizable=yes");
+			}
+		</script>
 	</div>
 </div>
 

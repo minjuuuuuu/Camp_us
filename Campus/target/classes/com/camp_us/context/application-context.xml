@@ -41,6 +41,12 @@
         c:boardDAO-ref="boardDAO"
         c:summernotePath-ref="summernotePath"
          />
+<!-- 파일 업로드를 위한 multipartResolver 등록 -->
+<bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="maxUploadSize" value="10485760"/> <!-- 10MB -->
+</bean>
 
 
 </beans>

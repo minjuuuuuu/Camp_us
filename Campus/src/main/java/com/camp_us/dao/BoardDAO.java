@@ -10,6 +10,8 @@ public interface BoardDAO {
 
     // 게시글 목록 조회
     List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException;
+    int getTotalCount(PageMaker pageMaker);
+
 
     // 게시글 상세 조회
     BoardVO selectBoardByNo(String boardNo);

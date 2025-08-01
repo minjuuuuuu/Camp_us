@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -12,83 +11,25 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 
     <style>
-        body {
-            font-family: '맑은 고딕', sans-serif;
-            padding: 20px;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
+        body { font-family: '맑은 고딕', sans-serif; padding: 20px; }
+        h2 { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
         select, input[type="text"], input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
+            width: 100%; padding: 8px; box-sizing: border-box;
         }
-
-        #summernote {
-            margin-top: 10px;
-        }
-
-        .btn-box {
-            text-align: right;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .btn-cancel {
-            background-color: #ccc;
-            color: #333;
-        }
-
-        .btn-submit {
-            background-color: #2ac1bc;
-            color: white;
-        }
-
-        .btn-submit:hover {
-            background-color: #1aa6a1;
-        }
-
-        .file-upload {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ccc;
-            padding: 6px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .file-upload input[type="file"] {
-            display: none;
-        }
-
+        #summernote { margin-top: 10px; }
+        .btn-box { text-align: right; margin-top: 20px; }
+        .btn { padding: 8px 16px; border: none; border-radius: 4px; margin-left: 10px; cursor: pointer; }
+        .btn-cancel { background-color: #ccc; color: #333; }
+        .btn-submit { background-color: #2ac1bc; color: white; }
+        .btn-submit:hover { background-color: #1aa6a1; }
+        .file-upload { display: flex; align-items: center; border: 1px solid #ccc; padding: 6px; width: 100%; box-sizing: border-box; }
+        .file-upload input[type="file"] { display: none; }
         .file-upload label {
-            background-color: #e0e0e0;
-            border: 1px solid #aaa;
-            padding: 4px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            font-size: 14px;
+            background-color: #e0e0e0; border: 1px solid #aaa; padding: 4px 10px; border-radius: 4px;
+            cursor: pointer; margin-right: 10px; font-size: 14px;
         }
-
-        .file-upload .file-name {
-            color: #666;
-            font-size: 14px;
-        }
+        .file-upload .file-name { color: #666; font-size: 14px; }
     </style>
 </head>
 
@@ -96,12 +37,13 @@
 
 <h2>작성하기</h2>
 
-<form action="/camp_us/board/write" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/board/write" method="post" enctype="multipart/form-data">
+
     <!-- 말머리 -->
     <div class="form-group">
         <label>말머리</label>
-        <select name="boardCat">
-            <option value="">전체</option>
+        <select name="boardCat" required>
+            <option value="" disabled selected>말머리 선택</option>
             <option value="공지">공지</option>
             <option value="자유">자유</option>
             <option value="토론">토론</option>
@@ -148,7 +90,7 @@
     </div>
 </form>
 
-<!-- Summernote 초기화 -->
+<!-- Summernote 초기화 + 파일명 표시 -->
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({
@@ -165,16 +107,26 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-    });
 
-    // 파일명 표시
-    document.querySelectorAll('input[type="file"]').forEach(input => {
-        input.addEventListener('change', function () {
+        $('input[type="file"]').on('change', function () {
             const fileName = this.files.length > 0 ? this.files[0].name : "선택된 파일 없음";
-            this.closest('.file-upload').querySelector('.file-name').textContent = fileName;
+            $(this).closest('.file-upload').find('.file-name').text(fileName);
         });
     });
 </script>
+
+<!-- 등록 성공 시 alert + 부모창 새로고침 + 팝업창 닫기 -->
+<c:if test="${success == true}">
+    <script>
+        window.onload = function () {
+            alert("등록이 완료되었습니다.");
+            if (window.opener) {
+                window.opener.location.reload();
+            }
+            window.close();
+        };
+    </script>
+</c:if>
 
 </body>
 </html>

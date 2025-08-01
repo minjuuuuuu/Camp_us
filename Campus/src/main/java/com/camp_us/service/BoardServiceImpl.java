@@ -19,6 +19,11 @@ public class BoardServiceImpl implements BoardService {
 		this.summernotePath = summernotePath;
 		this.boardDAO = boardDAO;
 	}
+	@Override
+	public int getTotalCount(PageMaker pageMaker) {
+	    return boardDAO.getTotalCount(pageMaker);
+	}
+
 
 	@Override
 	public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {

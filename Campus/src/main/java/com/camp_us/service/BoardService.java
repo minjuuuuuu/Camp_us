@@ -13,5 +13,6 @@ public interface BoardService {
  int insertBoard(BoardVO board);
  int updateBoard(BoardVO board);
  int deleteBoard(String boardNo);
+ int getTotalCount(PageMaker pageMaker);
 }
 

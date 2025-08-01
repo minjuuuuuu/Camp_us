@@ -12,7 +12,15 @@ public class BoardVO {
     private String boardDesc;     // 게시물 본문
     private Date boardMod;      // 수정일
     private String memId; 
-    // 작성자 (회원 ID)
+    private String boardContent;
+    
+    public String getBoardContent() {
+		return boardContent;
+	}
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
+	// 작성자 (회원 ID)
 	public String getBoardId() {
 		return boardId;
 	}
