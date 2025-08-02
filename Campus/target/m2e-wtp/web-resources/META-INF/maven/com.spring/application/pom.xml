@@ -18,7 +18,7 @@
 	<properties>
 		<java-version>1.11</java-version>
 		<org.springframework-version>4.3.2.RELEASE</org.springframework-version>
-
+		<org.springframework.security-version>3.2.3.RELEASE</org.springframework.security-version>
 		<oracle.ojdbc6-version>11.2.0.3</oracle.ojdbc6-version>
 		<org.apache.commons.dbcp2-version>2.9.0</org.apache.commons.dbcp2-version>
 		<org.mybatis-version>3.5.9</org.mybatis-version>
@@ -59,7 +59,31 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
+				<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${org.springframework.security-version}</version>
+			<exclusions>
+			<exclusion>
+				<groupId>orgspringframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>orgspringframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- oracle/ojdbc6 -->
 		<dependency>
@@ -175,7 +199,6 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-
 
 		<!-- Servlet -->
 		<dependency>

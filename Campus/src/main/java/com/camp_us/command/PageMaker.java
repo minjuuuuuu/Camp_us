@@ -15,6 +15,7 @@ public class PageMaker {
 	private int realEndPage; // 끝 페이지 번호
 	private boolean prev; // 이전페이지 버튼 유무
 	private boolean next; // 다음페이지 버튼 유무
+	
 
 	
 	public int getPage() {

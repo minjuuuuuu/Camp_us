@@ -47,8 +47,10 @@ public class BoardDAOImpl implements BoardDAO {
         return session.update("Board-Mapper.updateBoard", board);
     }
 
+  
     @Override
-    public int deleteBoard(String boardNo) {
-        return session.delete("Board-Mapper.deleteBoard", boardNo);
+    public int deleteBoard(String boardId) {
+        return session.delete("Board-Mapper.deleteBoard", boardId);
     }
+
 }

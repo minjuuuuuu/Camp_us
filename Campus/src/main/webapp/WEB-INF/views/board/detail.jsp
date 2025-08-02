@@ -246,10 +246,14 @@ h1 {
 
 	<!-- 수정 / 삭제 버튼 -->
 	<div class="btn-box">
-		<button id="editButton" class="btn btn-edit"
-			onclick="toggleEditMode()">수정</button>
-		<button class="btn btn-delete">삭제</button>
-	</div>
+	<button id="editButton" class="btn btn-edit" onclick="toggleEditMode()">수정</button>
+
+	<form method="post" action="${pageContext.request.contextPath}/board/delete" style="display:inline;">
+		<input type="hidden" name="boardId" value="${board.boardId}" />
+		<button type="submit" class="btn btn-delete" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+	</form>
+</div>
+
 
 	<!-- 제목 / 작성자 / 날짜 -->
 	<div id="postTitle" class="title">${board.boardName}</div>

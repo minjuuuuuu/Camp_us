@@ -11,7 +11,7 @@
         parameterType="com.camp_us.command.PageMaker"
         resultType="com.camp_us.dto.BoardVO">
     SELECT
-        BOARD_ID AS boardId,
+        BOARD_ID AS boardId,  
         BOARD_CAT AS boardCat,
         BOARD_NAME AS boardName,
         MEM_ID AS memId,
@@ -83,11 +83,11 @@
 </update>
 
 
-	<!-- 게시글 삭제 -->
-	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM BOARD
-		WHERE BOARD_ID = #{boardNo}
-	</delete>
+	<delete id="deleteBoard" parameterType="string">
+    DELETE FROM BOARD
+    WHERE BOARD_ID = #{boardId}
+</delete>
+
 
 </mapper>
 

@@ -47,7 +47,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int deleteBoard(String boardNo) {
-        return boardDAO.deleteBoard(boardNo);
+    public int deleteBoard(String boardId) {
+        return boardDAO.deleteBoard(boardId);
     }
+    
 }

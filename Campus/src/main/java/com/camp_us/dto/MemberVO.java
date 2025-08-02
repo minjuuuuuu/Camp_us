@@ -1,46 +1,42 @@
+
 package com.camp_us.dto;
 
 
 
-import java.sql.Timestamp;
+import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
 
 public class MemberVO {
 	private String mem_id;
-
-	private String mem_pass;
-	private String mem_name;
-	private String mem_email;
-	private String mem_phone;
-	private String mem_add;
-	private Date mem_lastlogin_date;
-	private Timestamp mem_lastlogin_time;
-	private String mem_sus;
-	private String picture;
-	private List<String> mem_auth;
-
-	public String getMem_auth_string() {
-	    return String.join(",", mem_auth);
-	}
-	public String getPicture() {
+    private String mem_pass;
+    private String mem_name;
+    private String mem_email;
+    private String mem_phone;
+    private String mem_add;
+    private Date mem_lastlogin_date;
+    private Time mem_lastlogin_time;
+    private String mem_sus;
+    private String mem_auth;
+    private String picture;
+    public String getPicture() {
 		return picture;
 	}
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	private int enabled;
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 	public String getMem_id() {
 		return mem_id;
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
-	}
-	public List<String> getMem_auth() {
-		return mem_auth;
-	}
-	public void setMem_auth(List<String> authorities) {
-		this.mem_auth = authorities;
 	}
 	public String getMem_pass() {
 		return mem_pass;
@@ -78,10 +74,10 @@ public class MemberVO {
 	public void setMem_lastlogin_date(Date mem_lastlogin_date) {
 		this.mem_lastlogin_date = mem_lastlogin_date;
 	}
-	public Timestamp getMem_lastlogin_time() {
+	public Time getMem_lastlogin_time() {
 		return mem_lastlogin_time;
 	}
-	public void setMem_lastlogin_time(Timestamp mem_lastlogin_time) {
+	public void setMem_lastlogin_time(Time mem_lastlogin_time) {
 		this.mem_lastlogin_time = mem_lastlogin_time;
 	}
 	public String getMem_sus() {
@@ -89,6 +85,12 @@ public class MemberVO {
 	}
 	public void setMem_sus(String mem_sus) {
 		this.mem_sus = mem_sus;
+	}
+	public String getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(String mem_auth) {
+		this.mem_auth = mem_auth;
 	}
 	
 	

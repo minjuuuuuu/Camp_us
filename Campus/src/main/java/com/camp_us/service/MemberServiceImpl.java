@@ -1,6 +1,9 @@
+
 package com.camp_us.service;
 
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import com.camp_us.command.PageMaker;
@@ -17,37 +20,43 @@ public class MemberServiceImpl implements MemberService {
 	public MemberServiceImpl(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
-@Override
+	
+	@Override
+    public MemberVO getMemberById(String mem_id) throws SQLException{
+        return memberDAO.getMemberById(mem_id);
+    }
+	
+	@Override
+	public MemberVO getMember(String id) throws SQLException {
+		MemberVO member = memberDAO.getMemberById(id);
+		if (member != null)
+			member.setMem_auth(memberDAO.selectAuthoritiesById(id));
+		return member;
+	}
+
+	@Override
+	public void updateMemLastLogin(String mem_id) throws Exception{
+		MemberVO member = memberDAO.getMemberById(mem_id);
+		if (member != null) {
+			Date date = new Date();
+			Time time = new Time(new Date().getTime());
+			member.setMem_lastlogin_date(date);
+			member.setMem_lastlogin_time(time);
+			
+			memberDAO.insertLastLogin(member);
+		}
+		
+	}
+	
+	@Override
 	public List<MemberVO> list() throws SQLException {
 		List<MemberVO> memberList = memberDAO.selectMemberList();
-
-		if (memberList != null)
-			for (MemberVO member : memberList) {
-				List<String> authorities = memberDAO.selectAuthoritiesById(member.getMem_id());
-				member.setMem_auth(authorities);
-			}
 		
 		return memberList;
 	}
 
 	@Override
-	public MemberVO getMember(String mem_id) throws SQLException {
-		MemberVO member = memberDAO.selectMemberById(mem_id);
-		if (member != null)
-			member.setMem_auth(memberDAO.selectAuthoritiesById(mem_id));
-		return member;
-	}
-
-	@Override
 	public void regist(MemberVO member) throws SQLException {
-		
-		memberDAO.insertMember(member);
-		
-		if (member.getMem_auth().size() > 0) {
-			for (String authority : member.getMem_auth()) {
-				memberDAO.insertAuthorities(member.getMem_id(),Integer.parseInt(authority));
-			}
-		}
 
 	}
 
@@ -69,8 +78,8 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-}
 
+}
 
 
 

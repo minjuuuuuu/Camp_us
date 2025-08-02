@@ -25,7 +25,7 @@
           class="java.lang.String"
           c:value="${savePath.log.files}"
           />
-
+	
     <bean id="memberDAO" class="com.camp_us.dao.MemberDAOImpl"
         c:session-ref="sqlSession" />
     <bean id="memberService"
@@ -35,7 +35,14 @@
     <bean id="boardDAO" 
         class="com.camp_us.dao.BoardDAOImpl"
         c:session-ref="sqlSession" />
-
+	<bean id="stuLecDAO"
+		  class="com.camp_us.dao.StuLecDAOImpl"
+		  c:session-ref="sqlSession"
+		  />
+	<bean id="stuLecService"
+		  class="com.camp_us.service.StuLecServiceImpl"
+		  c:stuLecDAO-ref="stuLecDAO"
+		  />
     <bean id="boardService"
         class="com.camp_us.service.BoardServiceImpl"
         c:boardDAO-ref="boardDAO"

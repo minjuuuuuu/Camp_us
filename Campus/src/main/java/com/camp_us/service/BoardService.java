@@ -12,7 +12,8 @@ public interface BoardService {
  BoardVO selectBoardByNo(String boardNo);
  int insertBoard(BoardVO board);
  int updateBoard(BoardVO board);
- int deleteBoard(String boardNo);
+ int deleteBoard(String boardId);
  int getTotalCount(PageMaker pageMaker);
+ 
 }
 

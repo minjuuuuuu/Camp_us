@@ -1,3 +1,4 @@
+
 package com.camp_us.service;
 
 import java.sql.SQLException;
@@ -7,11 +8,12 @@ import com.camp_us.dto.MemberVO;
 
 public interface MemberService {
 
+	MemberVO getMemberById(String mem_id) throws SQLException;
+	MemberVO getMember(String id) throws SQLException;
+	void updateMemLastLogin(String mem_id) throws Exception;
+	
 	// 회원목록
 	List<MemberVO> list() throws SQLException;
-
-	// 회원조회
-	MemberVO getMember(String mem_id) throws SQLException;
 
 	// 회원등록
 	void regist(MemberVO accout) throws SQLException;

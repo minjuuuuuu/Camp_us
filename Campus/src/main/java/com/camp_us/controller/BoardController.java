@@ -29,7 +29,7 @@ public class BoardController {
     }
 
     // 게시글 목록 조회
-    @GetMapping("/list")
+    @GetMapping("/boardlist")
     public String list(@ModelAttribute PageMaker pageMaker, Model model) throws Exception {
         // 1. 전체 게시글 수 조회
         int totalCount = boardService.getTotalCount(pageMaker);
@@ -93,6 +93,11 @@ public class BoardController {
         boardService.updateBoard(board);  // DB에 반영
         return "redirect:/list"; // 수정 후 목록으로 이동
     }
-    
+    @PostMapping("/board/delete")
+    public String deleteBoard(@RequestParam("boardId") String boardId) {
+        boardService.deleteBoard(boardId);
+        return "redirect:/list"; // 삭제 후 목록으로 이동
+    }
+
 
 }
