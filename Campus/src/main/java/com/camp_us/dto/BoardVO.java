@@ -13,6 +13,7 @@ public class BoardVO {
     private Date boardMod;      // 수정일
     private String memId; 
     private String boardContent;
+    private String memName;
     
     public String getBoardContent() {
 		return boardContent;
@@ -76,6 +77,13 @@ public class BoardVO {
 	public void setMemId(String memId) {
 		this.memId = memId;
 	}
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+	
 	
 
     

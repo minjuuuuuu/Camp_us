@@ -19,6 +19,16 @@ public class MemberVO {
     private String mem_sus;
     private String mem_auth;
     private String picture;
+    private String memId;
+
+    public String getMemId() {
+        return memId;
+    }
+
+    public void setMemId(String memId) {
+        this.memId = memId;
+    }
+
     public String getPicture() {
 		return picture;
 	}

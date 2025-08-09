@@ -25,5 +25,7 @@ public interface BoardDAO {
     // 게시글 삭제
    
     int deleteBoard(String boardId);
+    int deleteRepliesByBoardId(String boardId);
+  
 
 }

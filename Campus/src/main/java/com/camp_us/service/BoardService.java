@@ -14,6 +14,9 @@ public interface BoardService {
  int updateBoard(BoardVO board);
  int deleteBoard(String boardId);
  int getTotalCount(PageMaker pageMaker);
+ void deleteBoardWithReplies(String boardId);
+
+
  
 }
 

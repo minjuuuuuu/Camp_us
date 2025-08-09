@@ -104,8 +104,8 @@
         <p>회원님의 아이디와 비밀번호를 정확히 입력해주세요.</p>
         <form method="post" action="${ctx}/login/index/post" class="form-box">
         	<input name="retUrl" value="${retUrl}" type="hidden"/>
-            <input type="text" name="id" placeholder="ID" required />
-            <input type="password" name="pwd" placeholder="PASSWORD" required />
+            <input type="text" name="id" placeholder="ID" required value="mimi"/>
+            <input type="password" name="pwd" placeholder="PASSWORD" required value="mimi" />
             <div class="forgot">
                 <span>비밀번호를 잊어버리셨나요?</span>
                 <a href="login/find-password">비밀번호 찾기</a>

@@ -162,7 +162,7 @@
                   <p>&nbsp;&nbsp;&nbsp;강의계획서</p>
                 </a>
               </li>
-              <li class="nav-item menu" data-url="">
+              <li class="nav-item menu" data-url="<%=request.getContextPath()%>/lecnotice/list">
                 <a href="#" class="nav-link">
                   <i class="far fas nav-icon"></i>
                   <p>&nbsp;&nbsp;&nbsp;공지사항</p>

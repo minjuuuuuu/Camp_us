@@ -11,9 +11,11 @@
 		<typeAlias type="com.camp_us.dto.MemberVO" alias="account"/>
 		<typeAlias type="com.camp_us.dto.BoardVO" alias="board"/>
 		
+		
 		<typeAlias type="com.camp_us.command.PageMaker" alias="pageMaker"/>
 		<typeAlias type="com.camp_us.dto.StuLecVO" alias="stuLec"/>
 	</typeAliases>
+	
 </configuration>
 
 

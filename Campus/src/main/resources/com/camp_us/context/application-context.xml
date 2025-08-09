@@ -52,8 +52,20 @@
 <bean id="multipartResolver"
       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <property name="defaultEncoding" value="UTF-8"/>
-    <property name="maxUploadSize" value="10485760"/> <!-- 10MB -->
+    <property name="maxUploadSize" value="52428800"/> <!-- 50MB -->
+
 </bean>
+
+<!-- Reply DAO -->
+<bean id="replyDAO"
+      class="com.camp_us.dao.ReplyDAOImpl"
+      c:session-ref="sqlSession" />
+
+<!-- Reply Service -->
+<bean id="replyService"
+      class="com.camp_us.service.ReplyServiceImpl"
+      c:replyDAO-ref="replyDAO" />
+
 
 
 </beans>

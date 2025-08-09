@@ -50,5 +50,11 @@ public class BoardServiceImpl implements BoardService {
     public int deleteBoard(String boardId) {
         return boardDAO.deleteBoard(boardId);
     }
+    @Override
+    public void deleteBoardWithReplies(String boardId) {
+        boardDAO.deleteRepliesByBoardId(boardId); // 댓글 먼저 삭제
+        boardDAO.deleteBoard(boardId);            // 게시글 삭제
+    }
+
     
 }
