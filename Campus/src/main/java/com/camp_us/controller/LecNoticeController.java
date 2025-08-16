@@ -46,8 +46,8 @@ public class LecNoticeController {
             pageMaker.setPage(page);
             pageMaker.setPerPageNum(10);
 
-            // ▶ 검색 조건 세팅
-            pageMaker.setSearchType(searchType); // "" | "all" | "title" | "writer" | "content"
+       
+            pageMaker.setSearchType(searchType);
             pageMaker.setKeyword(keyword);
 
             int totalCount = lecNoticeService.getTotalCount(pageMaker);
@@ -122,7 +122,7 @@ public class LecNoticeController {
     }
 
 
-    // 상세(읽기) & 수정 모드 전환(mode=edit) - 항상 같은 JSP를 사용
+    // 상세(읽기) & 수정 모드 전환
     @GetMapping("/detail")
     public String lecNoticeDetail(@RequestParam("lecNoticeId") String lecNoticeId,
                                   @RequestParam(value = "mode", required = false) String mode,
@@ -151,7 +151,7 @@ public class LecNoticeController {
             LecNoticeVO lecNotice = lecNoticeService.getLecNoticeById(lecNoticeId);
             model.addAttribute("lecNotice", lecNotice);
 
-            // ✅ JSP에서 분기할 플래그
+      
             boolean editMode = "edit".equalsIgnoreCase(mode);
             model.addAttribute("editMode", editMode);
 
@@ -177,13 +177,13 @@ public class LecNoticeController {
             File dir = new File(uploadPath);
             if (!dir.exists()) dir.mkdirs();
 
-            // 1) 기존 삭제 플래그 우선
+       
             String fileName = origin.getFileName();
             String fileDetail = origin.getFileDetail();
             if ("on".equals(remove1)) fileName = "none.pdf";
             if ("on".equals(remove2)) fileDetail = "none.pdf";
 
-            // 2) 새 파일 업로드(최대 2개, 기존 값 교체)
+         
             if (files != null) {
                 int idx = 0;
                 for (MultipartFile mf : files) {

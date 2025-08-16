@@ -84,7 +84,7 @@ textarea {
 	clear: both;
 }
 
-/* 업로더 한 줄 스타일 */
+
 .uploader {
 	display: flex;
 	align-items: center;
@@ -142,10 +142,10 @@ textarea {
 	margin-right: 6px;
 }
 
-/* 본문 끝 구분선 + 목록 버튼 래퍼 */
+
 .sep-and-btn {
 	position: relative;
-	height: 48px; /* 버튼 높이만큼 영역 확보 */
+	height: 48px;
 	margin-top: 24px;
 }
 
@@ -160,14 +160,15 @@ textarea {
 .sep-and-btn .list-btn-fixed {
 	position: absolute;
 	right: 0;
-	top: 8px; /* 선에서 약간 내려오게 */
-}
-
-.list-btn-fixed > .btn.btn-primary:hover {
-  background-color: #1abc9c !important;
+	top: 8px; /
 }
 
 
+
+.btn-primary:hover {
+    background-color: #2bd6b9 !important;
+    border-color: #2bd6b9 !important;
+}
 </style>
 </head>
 <body>

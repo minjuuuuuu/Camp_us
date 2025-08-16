@@ -188,7 +188,7 @@
                   <p>&nbsp;&nbsp;&nbsp;출결</p>
                 </a>
               </li>
-              <li class="nav-item" data-url="">
+              <li class="nav-item" data-url="<%=request.getContextPath()%>/classfile/list">
                 <a href="" class="nav-link">
                   <i class="far nav-icon"></i>
                   <p>&nbsp;&nbsp;&nbsp;자료실</p>
