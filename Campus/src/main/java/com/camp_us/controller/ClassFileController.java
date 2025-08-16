@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.ClassFileVO;
 import com.camp_us.service.ClassFileService;
 
@@ -32,7 +32,7 @@ public class ClassFileController {
 
     /** 자료실 목록 (검색/페이징: PageMaker만 사용) */
     @GetMapping("/list")
-    public String list(@ModelAttribute PageMaker pageMaker, Model model) throws Exception {
+    public String list(@ModelAttribute PageMakerMJ pageMaker, Model model) throws Exception {
         int totalCount = classFileService.getTotalCount(pageMaker); // DB 기반 총건수
         pageMaker.setTotalCount(totalCount);
 

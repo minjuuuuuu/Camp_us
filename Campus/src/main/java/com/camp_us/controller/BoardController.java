@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.BoardVO;
 import com.camp_us.service.BoardService;
 import com.camp_us.service.ReplyService;
@@ -37,7 +37,7 @@ public class BoardController {
 
     // 게시글 목록 조회
     @GetMapping("/boardlist")
-    public String list(@ModelAttribute PageMaker pageMaker, Model model) throws Exception {
+    public String list(@ModelAttribute PageMakerMJ pageMaker, Model model) throws Exception {
         int totalCount = boardService.getTotalCount(pageMaker);
         pageMaker.setTotalCount(totalCount);
 

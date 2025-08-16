@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dao.ReplyDAO;
 import com.camp_us.dto.ReplyVO;
 
@@ -23,7 +23,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 
     @Override
-    public List<ReplyVO> getReplyList(int boardId, PageMaker pageMaker) throws Exception {
+    public List<ReplyVO> getReplyList(int boardId, PageMakerMJ pageMaker) throws Exception {
         int offset = pageMaker.getStartRow() - 1;
         int limit = pageMaker.getPerPageNum();
         return replyDAO.selectReplyListPage(boardId, offset, limit);

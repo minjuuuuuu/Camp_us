@@ -3,13 +3,13 @@ package com.camp_us.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.LecNoticeVO;
 
 public interface LecNoticeDAO {
-    int getTotalCount(PageMaker pageMaker) throws SQLException;
+    int getTotalCount(PageMakerMJ pageMaker) throws SQLException;
 
-    List<LecNoticeVO> selectLecNoticeList(PageMaker pageMaker) throws SQLException;
+    List<LecNoticeVO> selectLecNoticeList(PageMakerMJ pageMaker) throws SQLException;
 
     LecNoticeVO selectLecNoticeById(String lecNoticeId) throws SQLException;
 

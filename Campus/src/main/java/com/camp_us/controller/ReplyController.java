@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dao.ReplyDAO;
 import com.camp_us.dto.ReplyVO;
 import com.camp_us.service.ReplyService;
@@ -29,7 +29,7 @@ public class ReplyController {
     @GetMapping("/list")
     public Map<String, Object> getReplyList(@RequestParam("bno") int boardId,
                                             @RequestParam(defaultValue = "1") int page) throws Exception {
-        PageMaker pageMaker = new PageMaker();
+        PageMakerMJ pageMaker = new PageMakerMJ();
         pageMaker.setPage(page);
         pageMaker.setPerPageNum(5);
 
@@ -72,7 +72,7 @@ public class ReplyController {
         }
 
         int totalCount = replyDAO.countReply(reply.getBoardId());
-        int perPageNum = new PageMaker().getPerPageNum();
+        int perPageNum = new PageMakerMJ().getPerPageNum();
         String pageNum = "" + (int) Math.ceil(totalCount / (double) perPageNum);
 
         return new ResponseEntity<>(pageNum, HttpStatus.OK);

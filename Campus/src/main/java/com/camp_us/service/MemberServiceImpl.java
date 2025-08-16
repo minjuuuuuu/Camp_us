@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dao.MemberDAO;
 import com.camp_us.dto.MemberVO;
 

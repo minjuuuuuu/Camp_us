@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dao.LecNoticeDAO;
 import com.camp_us.dto.LecNoticeVO;
 
@@ -19,7 +19,7 @@ public class LecNoticeServiceImpl implements LecNoticeService {
     }
 
     @Override
-    public List<LecNoticeVO> getLecNoticeList(PageMaker pageMaker) throws SQLException {
+    public List<LecNoticeVO> getLecNoticeList(PageMakerMJ pageMaker) throws SQLException {
         return lecNoticeDAO.selectLecNoticeList(pageMaker);
     }
 
@@ -44,7 +44,7 @@ public class LecNoticeServiceImpl implements LecNoticeService {
     }
 
     @Override
-    public int getTotalCount(PageMaker pageMaker) throws SQLException {
+    public int getTotalCount(PageMakerMJ pageMaker) throws SQLException {
         return lecNoticeDAO.getTotalCount(pageMaker);
     }
     @Override

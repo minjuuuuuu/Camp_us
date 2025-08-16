@@ -6,7 +6,7 @@
 <mapper namespace="Board-Mapper">
 
 <select id="selectBoardList"
-        parameterType="com.camp_us.command.PageMaker"
+        parameterType="com.camp_us.command.PageMakerMJ"
         resultType="com.camp_us.dto.BoardVO">
   SELECT
     b.BOARD_ID AS boardId,
@@ -48,7 +48,7 @@
 
   <!-- 전체 게시글 수 조회 -->
   <select id="getTotalCount"
-          parameterType="com.camp_us.command.PageMaker"
+          parameterType="com.camp_us.command.PageMakerMJ"
           resultType="int">
     SELECT COUNT(*)
     FROM BOARD

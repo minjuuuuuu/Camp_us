@@ -3,14 +3,14 @@ package com.camp_us.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.BoardVO;
 
 public interface BoardDAO {
 
     // 게시글 목록 조회
-    List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException;
-    int getTotalCount(PageMaker pageMaker);
+    List<BoardVO> selectBoardList(PageMakerMJ pageMaker) throws SQLException;
+    int getTotalCount(PageMakerMJ pageMaker);
 
 
     // 게시글 상세 조회

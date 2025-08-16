@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dao.BoardDAO;
 import com.camp_us.dto.BoardVO;
 
@@ -20,13 +20,13 @@ public class BoardServiceImpl implements BoardService {
 		this.boardDAO = boardDAO;
 	}
 	@Override
-	public int getTotalCount(PageMaker pageMaker) {
+	public int getTotalCount(PageMakerMJ pageMaker) {
 	    return boardDAO.getTotalCount(pageMaker);
 	}
 
 
 	@Override
-	public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
+	public List<BoardVO> selectBoardList(PageMakerMJ pageMaker) throws SQLException {
 		List<BoardVO> boardList = boardDAO.selectBoardList(pageMaker);
 		
 		return boardList;

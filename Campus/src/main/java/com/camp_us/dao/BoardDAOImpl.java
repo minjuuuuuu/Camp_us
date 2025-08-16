@@ -7,7 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.BoardVO;
 
 @Repository
@@ -20,12 +20,12 @@ public class BoardDAOImpl implements BoardDAO {
     }
 
     @Override
-    public int getTotalCount(PageMaker pageMaker) {
+    public int getTotalCount(PageMakerMJ pageMaker) {
         return session.selectOne("Board-Mapper.getTotalCount", pageMaker);
     }
 
     @Override
-    public List<BoardVO> selectBoardList(PageMaker pageMaker) throws SQLException {
+    public List<BoardVO> selectBoardList(PageMakerMJ pageMaker) throws SQLException {
         int offset = pageMaker.getStartRow() - 1;
         int limit = pageMaker.getPerPageNum();
         RowBounds bounds = new RowBounds(offset, limit);

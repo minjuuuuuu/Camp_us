@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.ClassFileVO;
 
 @Repository
@@ -19,12 +19,12 @@ public class ClassFileDAOImpl implements ClassFileDAO {
     private SqlSession session;
 
     @Override
-    public int selectTotalCount(PageMaker pageMaker) throws Exception {
+    public int selectTotalCount(PageMakerMJ pageMaker) throws Exception {
         return session.selectOne(NAMESPACE + ".getTotalCount", pageMaker);
     }
 
     @Override
-    public List<ClassFileVO> selectList(PageMaker pageMaker) throws Exception {
+    public List<ClassFileVO> selectList(PageMakerMJ pageMaker) throws Exception {
         return session.selectList(NAMESPACE + ".getList", pageMaker);
     }
 }

@@ -1,6 +1,6 @@
 package com.camp_us.command;
 
-public class PageMaker {
+public class PageMakerMJ {
 
     private String searchType = "";
     private String keyword = "";

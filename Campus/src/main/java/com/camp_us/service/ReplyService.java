@@ -2,11 +2,11 @@ package com.camp_us.service;
 
 import java.util.List;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.ReplyVO;
 
 public interface ReplyService {
-    List<ReplyVO> getReplyList(int boardId, PageMaker pageMaker) throws Exception;
+    List<ReplyVO> getReplyList(int boardId, PageMakerMJ pageMaker) throws Exception;
     int countReply(int boardId) throws Exception;
     void registReply(ReplyVO reply) throws Exception;
     void modifyReply(ReplyVO reply) throws Exception;

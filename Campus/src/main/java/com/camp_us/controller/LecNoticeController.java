@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.LecNoticeVO;
 import com.camp_us.service.LecNoticeService;
 
@@ -42,7 +42,7 @@ public class LecNoticeController {
             @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
             Model model) {
         try {
-            PageMaker pageMaker = new PageMaker();
+            PageMakerMJ pageMaker = new PageMakerMJ();
             pageMaker.setPage(page);
             pageMaker.setPerPageNum(10);
 

@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.camp_us.command.PageMaker;
+import com.camp_us.command.PageMakerMJ;
 import com.camp_us.dto.LecNoticeVO;
 
 @Repository
@@ -19,13 +19,13 @@ public class LecNoticeDAOImpl implements LecNoticeDAO {
     }
 
     @Override
-    public int getTotalCount(PageMaker pageMaker) throws SQLException {
+    public int getTotalCount(PageMakerMJ pageMaker) throws SQLException {
         // 검색 파라미터(PageMaker) 전달
         return session.selectOne("LecNoticeMapper.getTotalCount", pageMaker);
     }
 
     @Override
-    public List<LecNoticeVO> selectLecNoticeList(PageMaker pageMaker) throws SQLException {
+    public List<LecNoticeVO> selectLecNoticeList(PageMakerMJ pageMaker) throws SQLException {
         // ★ RowBounds 제거! ROWNUM 페이징을 사용하는 getLecNoticeList 호출
         return session.selectList("LecNoticeMapper.getLecNoticeList", pageMaker);
     }
